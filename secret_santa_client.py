@@ -57,7 +57,7 @@ def request(function, args):
             data = s.recv(1024)
 
         return data.decode()
-    except ZeroDivisionError :
+    except :
         slow_print("Erreur lors de la connexion au serveur.")
         sys.exit()
 
@@ -69,7 +69,9 @@ def secretsantaserver_getAllNames():
     return eval(request("getAllNames", ""))
 
 def secretsantaserver_addName(name):
-    return request("addName", name)
+    (pubkey, privkey) = newkeys(768)
+    request("addName", name + '\0' + str(pubkey))
+    return str(privkey)
 
 def secretsantaserver_decode(name, privkey):
     crypto = make_bin(request("decode", name))
