@@ -5,7 +5,21 @@ import time
 import os
 import socket
 import sys
-from rsa import *
+
+try:
+    from rsa import *
+except:
+    print("Le client secret santa a besoin du module python rsa pour fonctionner.")
+    print("> Vous pouvez essayer la commande `pip install rsa`. Normalement sur Windows, ça fonctionne.")
+    print("\n> Si la commande ne fonctionne pas, essayez d'installer le paquet `python3-rsa` avec votre gestionnaire de paquets habituel")
+    print("\n> Enfin, si ça ne fonctionne toujours pas, créez un environnement virtuel et installez rsa dedans :")
+    print(" > Commencez par taper la commande `python3 -m venv myenv`")
+    print(" > Puis tapez la commande `source myenv/bin/activate` afin de rentrer dans l'environnement virtuel")
+    print(" > Lancez la commande `pip install rsa`")
+    print(" > Vous pouvez relancer le client secret santa !")
+    print(" > Une fois terminé, tapez la commande `deactivate` pour sortir de l'environnement virtuel")
+    print(" > A chaque fois que vous voudrez exécuter le client, il faudra au préalable se mettre dans l'environnement virtuel")
+    sys.exit()
 
 HOST = '2a02:8424:8781:7901:ce43:8e88:c2db:5d82'  # ou l'adresse IP de mon serveur
 PORT = 12345
