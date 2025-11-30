@@ -21,7 +21,7 @@ except:
     print(" > A chaque fois que vous voudrez exécuter le client, il faudra au préalable se mettre dans l'environnement virtuel")
     sys.exit()
 
-HOST = '2a02:8424:8781:7901:ce43:8e88:c2db:5d82'  # ou l'adresse IP de mon serveur
+HOST = 'dev.diskloud.fr'  # adresse du serveur
 PORT = 12345
 
 save_file = "CONSERVER CE FICHIER"
@@ -65,7 +65,7 @@ def pause():
 
 def request(function, args):
     try:
-        with socket.socket(socket.AF_INET6, socket.SOCK_STREAM) as s:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((HOST, PORT))
             s.sendall(bytes(function + '\0' + args, "utf-8"))
             data = s.recv(1024)
